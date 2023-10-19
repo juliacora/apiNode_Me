@@ -1,93 +1,104 @@
 # Documentação
-Criar pasta para a aplicação
+Copiar a url do projeto
+
+Apagar pasta no PC
+
+Para o repositório na sua máquina
 ```
-mkdir projetoBackend
+git clone URL_REPOSITORIO
 ```
 Acessar pasta
 ```
-cd projetoBackend
+cd NOME_REPOSITORIO
 ```
-Criar arquivo para documentar projeto
+Reinstalar os pacotes da aplicação
 ```
-touch readme.md
+npm i
 ```
-Iniciar o gerenciador de pacotes Node
+Criar arquivo .env na raiz do projeto
+
+* Ctrl + o: Salvar o arquivo
+
+* Enter: Confirmar
+
+* Ctrl + x: Fechar o arquivo
 ```
-npm init -y
+nano .env
 ```
-Instalar os pacotes
+Digitar no arquivo .env
 ```
-npm i express nodemon dotenv
+PORT = 3008
+```
+Adicionar arquivo .env no .gitignor
+```
+nano .gitignore
+```
+```
+.env
 ```
 Abrir o VSCode
 ```
 code .
 ```
-Criar arquivo .gitignore
+Criar arquivo de exemplo para para as variáveis necessárias da aplicação
 ```
-nano .gitignore
+nano .env.example
 ```
-Adicionar no arquivo .gitignore o nome da pasta criada após a instalação dos pacotes
+Adicionar no arquivo .env.example
 ```
-node_modules
+PORT =
 ```
-Criar estrutura de arquivos e pastas
+Abrir o arquivo app.js e digitar o código
 ```
-mkdir src
-```
-Criar arquivos dentro da pasta src
-```
-touch src/app.js
+const express = require('express');
 ```
 ```
-touch src/server.js
-```
-Criar pastas dentro da pasta src
-```
-mkdir src/config
+const dotenv = require('dotenv').config();
 ```
 ```
-mkdir src/controllers
+const app = express();
 ```
 ```
-mkdir src/routes
-```
-Enviar estrutura do projeto para o gitHub
-```
-git init
-```
-Informar o seu nome e email
-```
-git config --global user.name "FIRST_NAME"
+app.set('port', process.env.PORT || 3333);
 ```
 ```
- git config --global user.email "EMAIL@EXAMPLE.COM"
+module.exports = app;
 ```
-Verificar arquivos que serão enviados ao gitHub
+Abrir o arquivo server.js e digitar os códigos
 ```
-git status
+const app = require('./app');
 ```
-Adicionar todos arquivos ao versionamento
+```
+const port = app.get('port');
+```
+```
+app.listen(port, () => {
+    console.log(`Running on port ${ port }!`);
+});
+```
+Abrir o arquivo package.json e alterar a chave 'scripts'
+```
+"start":"nodemon src/server.js"
+```
+Rodar o comando no termial com gitBash
+```
+npm run start
+```
+Atualizar projeto no gitHub
 ```
 git add .
 ```
 Salvar projeto e escrever comentário sobre o processo realizado
 ```
-git commit -m 'estrutura do projeto'
+git commit -m 'configuração do projeto'
 ```
-De volta ao terminal, executar o comando para definir a branch main
+Enviar os arquivos atualizados para o gitHub
 ```
-git branch -M main
+git push
 ```
-Colar a URL do seu repositório copiada
-```
-git remote add origin COLAR_URL
-```
-Enviar os arquivos para o gitHub
-```
-git push -u origin main
-```
-Com o projeto no servidor remoto podemos remover os arquivos na nossa máquina
+Atualize a página no gitHub e verifique se os arquivos foram atualizados
+
+* Com o projeto no servidor remoto podemos remover os arquivos na nossa máquina
 ```
 cd ..
 ```
