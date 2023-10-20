@@ -15,74 +15,48 @@ Reinstalar os pacotes da aplicação
 ```
 npm i
 ```
-Criar arquivo .env na raiz do projeto
-
-* Ctrl + o: Salvar o arquivo
-
-* Enter: Confirmar
-
-* Ctrl + x: Fechar o arquivo
+Criar pastas dentro da pasta src
 ```
-nano .env
+mkdir src/routes
 ```
-Digitar no arquivo .env
+Criar arquivo dentro da pasta routes
 ```
-PORT = 3008
-```
-Adicionar arquivo .env no .gitignor
-```
-nano .gitignore
-```
-```
-.env
+touch src/routes/rotas.js
 ```
 Abrir o VSCode
 ```
 code .
 ```
-Criar arquivo de exemplo para para as variáveis necessárias da aplicação
+Abrir o arquivo rotas.js e digitar os códigos
 ```
-nano .env.example
-```
-Adicionar no arquivo .env.example
-```
-PORT =
-```
-Abrir o arquivo app.js e digitar o código
-```
-const express = require('express');
-```
-```
-const dotenv = require('dotenv').config();
-```
-```
-const app = express();
-```
-```
-app.set('port', process.env.PORT || 3333);
-```
-```
-module.exports = app;
-```
-Abrir o arquivo server.js e digitar os códigos
-```
-const app = require('./app');
-```
-```
-const port = app.get('port');
-```
-```
-app.listen(port, () => {
-    console.log(`Running on port ${ port }!`);
+// Importar o modulo de Router do express
+const { Router } = require('express');
+
+// Instanciar o Router na variável router
+const router = Router();
+
+router.get('/listar', (request, response) => {
+    response.send('Método GET: listar informações');
 });
+router.post('/cadastrar', (request, response) => {
+    response.send('Método POST: salvar informações');
+});
+router.put('/user/:id', (request, response) => {
+    response.send('Método PUT: atualizar informações');
+});
+router.delete('/user/:id', (request, response) => {
+    response.send('Método DELETE: remover informações');
+});
+
+module.exports = router;
+
 ```
-Abrir o arquivo package.json e alterar a chave 'scripts'
+Abrir o arquivo app.js e adicionar o código
 ```
-"start":"nodemon src/server.js"
+const router = require('./routes/rotas');
 ```
-Rodar o comando no termial com gitBash
 ```
-npm run start
+app.use('/api', router);
 ```
 Atualizar projeto no gitHub
 ```
@@ -90,7 +64,7 @@ git add .
 ```
 Salvar projeto e escrever comentário sobre o processo realizado
 ```
-git commit -m 'configuração do projeto'
+git commit -m 'rotas do projeto'
 ```
 Enviar os arquivos atualizados para o gitHub
 ```
