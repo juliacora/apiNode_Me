@@ -15,67 +15,31 @@ Reinstalar os pacotes da aplicação
 ```
 npm i
 ```
-Criar pastas dentro da pasta src
-```
-mkdir src/routes
-```
-Criar arquivo dentro da pasta routes
-```
-touch src/routes/rotas.js
-```
 Abrir o VSCode
 ```
 code .
 ```
-Abrir o arquivo rotas.js e digitar os códigos
+Criar pasta . env e adicionar
 ```
-// Importar o modulo de Router do express
-const { Router } = require('express');
+PORT = 3000
+```
+Abrir Insomia
 
-// Instanciar o Router na variável router
-const router = Router();
+Clicar no "+" para criar novo projeto
 
-router.get('/listar', (request, response) => {
-    response.send('Método GET: listar informações');
-});
-router.post('/cadastrar', (request, response) => {
-    response.send('Método POST: salvar informações');
-});
-router.put('/user/:id', (request, response) => {
-    response.send('Método PUT: atualizar informações');
-});
-router.delete('/user/:id', (request, response) => {
-    response.send('Método DELETE: remover informações');
-});
+New Collection
 
-module.exports = router;
+New HTTP Request
 
-```
-Abrir o arquivo app.js e adicionar o código
-```
-const router = require('./routes/rotas');
-```
-```
-app.use('/api', router);
-```
-Atualizar projeto no gitHub
-```
-git add .
-```
-Salvar projeto e escrever comentário sobre o processo realizado
-```
-git commit -m 'rotas do projeto'
-```
-Enviar os arquivos atualizados para o gitHub
-```
-git push
-```
-Atualize a página no gitHub e verifique se os arquivos foram atualizados
+Renomear para cada método e alterar a tag
+<img src="3.png">
 
-* Com o projeto no servidor remoto podemos remover os arquivos na nossa máquina
+Para executar a ação da rota
 ```
-cd ..
+npm start
 ```
-Fechar o VSCode com o projeto aberto
-```
-rm -rf projetoBackend
+
+Descrever a url da nossa API com a porta que definimos (http://localhost:3000) e as rotas (/api/listar - caso get) que criamos no arquivo rotas.js
+<img src="4.png">
+
+Fazer o mesmo com os 3 métodos "PUT" "GET" "DELETE" "POST"
